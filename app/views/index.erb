@@ -11,7 +11,7 @@
 <h2>Otherwise:</h2>
 <h3>Sign Up:</h3>
 
-<%= "Must include email and password" if @traveler && @traveler.errors.any? %>
+<%= "Must include username and password" if @traveler && @traveler.errors.any? %>
 
 <form action='/travelers' method="post">
   <label for="username">Username: </label>

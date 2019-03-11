@@ -5,19 +5,22 @@ class TravelersController < ApplicationController
   end
 
   post '/travelers' do
-    @traveler = User.new
+    @traveler = Traveler.new
     @traveler.username = params[:username]
     @traveler.password = params[:password]
+    binding.pry
     if @traveler.save
-      redirect '/travelers'
+     login(params[:username], params[:password])
+     redirect to '/trips'
     else
       erb:"travelers/new.html"
     end
   end
 
   get '/travelers' do
-    @travelers = Traveler.all
-    erb :'/travelers/index'
+    binding.pry
+
+    # erb :'/travelers/index'
   end
 
   get '/travelers/new' do
