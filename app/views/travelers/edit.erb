@@ -1,0 +1,29 @@
+<h1>Update Traveler</h1>
+
+<form action="/travelers/<%=@traveler.id%>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <label>Name:</label>
+
+  <br>
+
+  <input type="text" name="traveler[name]" id="traveler_name" value="<%=@traveler.name%>">
+
+  <br>
+
+  <label>Choose an existing trip:</label>
+
+  <br>
+
+  <%@trips.each do |trip|%>
+    <input type="checkbox" name="traveler[trip_ids][]" id="<%= trip.id%>" value="<%=trip.id%>" <%='checked' if @traveler.trips.include?(trip) %>><%=trip.name%></input>
+  <%end%>
+
+  <br>
+
+  <label>and/or, create a new trip:</label>
+  <br>
+  <label>name:</label>
+    <input  type="text" name="trip[name]" id="trip_name"></input>
+  <br>
+  <input type="submit" value="Update Traveler">
+</form>
