@@ -1,7 +1,7 @@
 class TravelersController < ApplicationController
 
   get '/signup' do
-    erb:"travelers/new.erb"
+    erb:"travelers/new"
   end
 
   post '/travelers' do
