@@ -8,10 +8,9 @@ class TravelersController < ApplicationController
     @traveler = Traveler.new
     @traveler.username = params[:username]
     @traveler.password = params[:password]
-    binding.pry
     if @traveler.save
      login(params[:username], params[:password])
-     redirect to '/trips'
+     redirect to '/trips/new'
     else
       erb:"travelers/new.html"
     end

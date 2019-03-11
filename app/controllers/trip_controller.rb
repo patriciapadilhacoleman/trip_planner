@@ -7,12 +7,21 @@ class TripController < ApplicationController
     erb:"trips/show"
   end
 
+  post '/trips' do
+
+    @trip = Trip.new(params[:trip])
+    @trip.traveler_id = session["user_id"]
+    @trip.save
+    @traveler = Traveler.find_by_id(@trip.traveler_id)
+    binding.pry
+    erb:"trips/show"
+  end
   get '/trips/new' do
 
     if !logged_in?
       redirect to "/login"
     else
-      "A new trip form"
+      erb:'trips/new'
     end
   end
 
