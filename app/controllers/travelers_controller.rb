@@ -17,20 +17,20 @@ class TravelersController < ApplicationController
   end
 
   get '/travelers' do
-    binding.pry
+    erb:index #signup or login
 
-    # erb :'/travelers/index'
   end
 
-  get '/travelers/new' do
-    trips = Trip.all
+  get '/travelers/new' do #signup
     erb :'/travelers/new'
   end
 
 
   get '/travelers/:id/edit' do
+
+
     @traveler = Traveler.find(params[:id])
-    trips = Trip.all
+
     erb :'/travelers/edit'
   end
 
