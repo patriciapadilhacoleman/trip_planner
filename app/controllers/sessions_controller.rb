@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
 
    post '/sessions' do
-     binding.pry
+
      login(params[:username], params[:password])
      redirect to '/trips'
    end

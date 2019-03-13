@@ -5,10 +5,10 @@ class TravelersController < ApplicationController
   end
 
   post '/travelers' do
-    @traveler = Traveler.new
-    @traveler.username = params[:username]
-    @traveler.password = params[:password]
-    if @traveler.save
+
+    @traveler = add_traveler(params)
+
+    if @traveler
      login(params[:username], params[:password])
      redirect to '/trips/new'
     else
@@ -21,7 +21,7 @@ class TravelersController < ApplicationController
 
   end
 
-  get '/travelers/new' do #signup
+  post '/travelers/new' do #signup
     erb :'/travelers/new'
   end
 
@@ -36,17 +36,17 @@ class TravelersController < ApplicationController
 
   get '/travelers/:id' do
     @traveler = Traveler.find(params[:id])
+    binding.pry
     erb :'/travelers/show'
   end
 
   patch '/travelers/:id' do
     @traveler = Traveler.find(params[:id])
 
-    ####### the following bug fix is required so that it's possible to remove ALL previous pets from owner.
     if !params[:traveler].keys.include?("trip_ids")
     params[:traveler]["trip_ids"] = []
     end
-    ####### End of fix
+
 
     @traveler.update(params["traveler"])
     if !params["trip"]["name"].empty?
@@ -54,4 +54,23 @@ class TravelersController < ApplicationController
     end
     redirect "travelers/#{@traveler.id}"
   end
+
+  def add_traveler(params)
+
+    @traveler = Traveler.new
+    @traveler.username = params[:username]
+    @traveler.password = params[:password]
+    @traveler.first_name = params[:first_name]
+    @traveler.last_name = params[:last_name]
+    @traveler.dob = params[:dob]
+    @traveler.home_airport = params[:home_airport]
+    @traveler.street_address = params[:street_address]
+    @traveler.city = params[:city]
+    @traveler.state = params[:state]
+    @traveler.zip = params[:zip]
+    @traveler.save
+    @traveler
+
+  end
+
 end

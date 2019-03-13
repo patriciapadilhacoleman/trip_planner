@@ -3,7 +3,6 @@ class TripController < ApplicationController
   get '/trips' do
     username = session[:username]
     @traveler = Traveler.find_by(:username => username)
-    binding.pry
     erb:"trips/show"
   end
 
