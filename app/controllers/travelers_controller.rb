@@ -34,9 +34,16 @@ class TravelersController < ApplicationController
     erb :'/travelers/edit'
   end
 
+  post '/travelers/:id/edit' do
+
+
+    @traveler = Traveler.find(params[:id])
+
+    erb :'/travelers/edit'
+  end
+
   get '/travelers/:id' do
     @traveler = Traveler.find(params[:id])
-    binding.pry
     erb :'/travelers/show'
   end
 
@@ -53,6 +60,12 @@ class TravelersController < ApplicationController
       @traveler.trips << Trip.create(name: params["trip"]["name"])
     end
     redirect "travelers/#{@traveler.id}"
+  end
+
+  delete '/travelers/:id' do
+
+    binding.pry
+    erb:index
   end
 
   def add_traveler(params)

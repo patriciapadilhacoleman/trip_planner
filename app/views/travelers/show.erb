@@ -1,7 +1,23 @@
-<h1><%=@traveler.name%></h1>
-<h4>Trips:</h4>
+<h1><%=@traveler.first_name%>'s Info:</h1>
+
+<h4><%=@traveler.first_name%> <%=@traveler.last_name%></h4>
+<h4>Dob:<%=@traveler.dob%></h4>
+<h4>Home Airport: <%=@traveler.home_airport%></h4>
+<h4>Address: <%=@traveler.street_address%></h4>
+<h4><%=@traveler.city%>, <%=@traveler.state%> <%=@traveler.zip%></h4>
+
+<h2>Trips:</h2>
 <ul>
   <%@traveler.trips.each do |trip|%>
   <li><%=trip.name%></li>
   <%end%>
 </ul>
+
+<form action='/travelers/<%=@traveler.id%>/edit' method="post">
+ <button type="submit">Update Info</button>
+</form>
+
+<form action="/travelers/<%=@traveler.id%>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Account">
+</form>
