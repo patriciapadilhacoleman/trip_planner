@@ -14,12 +14,16 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def logged_in?
-      !!current_user
-      binding.pry
+      if params["id"].to_i == session[:user_id]
+        return true
+      end
+
     end
 
     def current_user
-      @current_user ||= Traveler.find_by(:username => session[:user_id]) if session[:user_id]
+      # @current_user ||= Traveler.find_by(:username => session[:user_id]) if session[:user_id]
+
+      binding.pry
     end
 
     def login(username, password)

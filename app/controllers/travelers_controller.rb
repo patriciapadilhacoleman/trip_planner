@@ -32,6 +32,7 @@ class TravelersController < ApplicationController
       @traveler = Traveler.find(params[:id])
       erb :'/travelers/edit'
     else
+      logout
       erb:index #signup or login
     end
 
@@ -48,8 +49,9 @@ class TravelersController < ApplicationController
   get '/travelers/:id' do
     if logged_in?
       @traveler = Traveler.find(params[:id])
-      erb :'/travelers/show'  
+      erb :'/travelers/show'
     else
+      logout
       erb:index #signup or login
     end
 
