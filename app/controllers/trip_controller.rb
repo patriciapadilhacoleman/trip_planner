@@ -26,6 +26,7 @@ class TripController < ApplicationController
 
   get '/trips/:id/edit' do
 
+     binding.pry
     if !logged_in?
       redirect to "/login"
     else

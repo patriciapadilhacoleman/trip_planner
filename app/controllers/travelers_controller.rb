@@ -64,7 +64,9 @@ class TravelersController < ApplicationController
 
   delete '/travelers/:id' do
 
-    binding.pry
+    traveler = Traveler.find_by_id(params[:id])
+    traveler.delete
+    
     erb:index
   end
 
