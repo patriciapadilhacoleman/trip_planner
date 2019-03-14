@@ -28,10 +28,13 @@ class TravelersController < ApplicationController
 
   get '/travelers/:id/edit' do
 
+    if logged_in?
+      @traveler = Traveler.find(params[:id])
+      erb :'/travelers/edit'
+    else
+      erb:index #signup or login
+    end
 
-    @traveler = Traveler.find(params[:id])
-
-    erb :'/travelers/edit'
   end
 
   post '/travelers/:id/edit' do
@@ -43,8 +46,13 @@ class TravelersController < ApplicationController
   end
 
   get '/travelers/:id' do
-    @traveler = Traveler.find(params[:id])
-    erb :'/travelers/show'
+    if logged_in?
+      @traveler = Traveler.find(params[:id])
+      erb :'/travelers/show'  
+    else
+      erb:index #signup or login
+    end
+
   end
 
   patch '/travelers/:id' do
@@ -53,7 +61,6 @@ class TravelersController < ApplicationController
     if !params[:traveler].keys.include?("trip_ids")
     params[:traveler]["trip_ids"] = []
     end
-
 
     @traveler.update(params["traveler"])
     if !params["trip"]["name"].empty?
@@ -66,7 +73,7 @@ class TravelersController < ApplicationController
 
     traveler = Traveler.find_by_id(params[:id])
     traveler.delete
-    
+
     erb:index
   end
 

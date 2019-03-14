@@ -15,10 +15,11 @@ class ApplicationController < Sinatra::Base
   helpers do
     def logged_in?
       !!current_user
+      binding.pry
     end
 
     def current_user
-      @current_user ||= Traveler.find_by(:username => session[:username]) if session[:username]
+      @current_user ||= Traveler.find_by(:username => session[:user_id]) if session[:user_id]
     end
 
     def login(username, password)
