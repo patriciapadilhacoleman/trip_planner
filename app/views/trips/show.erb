@@ -2,11 +2,14 @@
 <h2>Trips:</h2>
 <ul>
   <%@traveler.trips.each do |trip|%>
-  <li><%=trip.name%>
-      <p><%=trip.beg_date%><%=trip.end_date%> $<%=trip.budget%></p>
+  <li><h3><%=trip.name%></h3>
+      <p>Start Date: <%=trip.beg_date%> End Date:<%=trip.end_date%></p>
+      <p>Budget: $<%=trip.budget%></p>
       <a href="/trips/<%=trip.id%>/edit"><button>Edit</button></a>
+      <br><br>
   </li>
   <%end%>
+
 </ul>
 
   <a href="/trips/new"><button>Create a New Trip</button></a>

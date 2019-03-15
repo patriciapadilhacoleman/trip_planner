@@ -1,3 +1,5 @@
+<h1>Hi <%=@traveler.first_name%>!</h1>
+<h2>Edit Your Trip:</h2>
 <form action="/trips/<%=@trip.id%>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <label>Name:</label>

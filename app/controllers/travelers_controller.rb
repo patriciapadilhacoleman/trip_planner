@@ -59,9 +59,6 @@ class TravelersController < ApplicationController
 
   patch '/travelers/:id' do
     @traveler = Traveler.find(params[:id])
-
-
-    binding.pry
     @traveler.update(params["traveler"])
     redirect "travelers/#{@traveler.id}"
   end

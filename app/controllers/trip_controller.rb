@@ -13,7 +13,7 @@ class TripController < ApplicationController
   end
 
   post '/trips' do
-    binding.pry
+
     @trip = Trip.create(params[:trip])
     @trip.traveler_id = session["user_id"]
     @trip.save
@@ -46,9 +46,9 @@ class TripController < ApplicationController
   get '/trips/:id/edit' do
 
      binding.pry
-     if @trip = current_user.trips.find_by(params[:id])
+     if @trip = current_user.trips.find_by_id(params[:id])
 
-        # "Edit a post form #{current_user.id} is editing #{trip.id}"
+        @traveler = Traveler.find(session[:user_id])
         erb:"/trips/edit"
 
       else
@@ -66,6 +66,7 @@ class TripController < ApplicationController
         erb:"/trips/edit"
 
       else
+        binding.pry
         redirect '/trips'
       end
 
@@ -79,7 +80,7 @@ class TripController < ApplicationController
     # end
 
     @trip.update(params["trip"])
-    binding.pry
+
     erb:"trips/show"
     # if !params["trip"]["name"].empty?
     #   @traveler.trips << Trip.create(name: params["trip"]["name"])
