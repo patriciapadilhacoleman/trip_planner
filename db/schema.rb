@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190315195220) do
+ActiveRecord::Schema.define(version: 20190315213158) do
 
   create_table "days", force: :cascade do |t|
+    t.string "date"
     t.string "location"
     t.string "activities"
     t.string "transportation"
     t.integer "trip_id"
-    t.string "date"
   end
 
   create_table "tickets", force: :cascade do |t|

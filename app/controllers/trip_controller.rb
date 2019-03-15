@@ -4,6 +4,8 @@ class TripController < ApplicationController
 
     if logged_in?
       @traveler = Traveler.find_by_id(session[:user_id])
+      binding.pry
+      @days = current_user.trips.days
       erb:"trips/show"
     else
       erb:index

@@ -6,6 +6,29 @@
       <li><h3><%=trip.name%></h3>
           <p>Start Date: <%=trip.beg_date%> End Date:<%=trip.end_date%></p>
           <p>Budget: $<%=trip.budget%></p>
+
+          <table>
+            <caption>Trip's Daily Planner</caption>
+                   <tr>
+                      <th>Date</th>
+                      <th>Location</th>
+                      <th>Activities</th>
+                      <th>Transportation</th>
+                   </tr>
+                   <tr>
+                      <td>Java</td>
+                      <td>1995</td>
+                      <td>Java</td>
+                      <td>1995</td>
+                   </tr>
+                   <tr>
+                      <td>Pascal</td>
+                      <td>1970</td>
+                      <td>Java</td>
+                      <td>1995</td>
+                   </tr>
+            </table>
+
           <a href="/trips/<%=trip.id%>/edit"><button>   Edit   </button></a>
           <form action="/trips/<%=@trip.id%>" method="POST">
             <input id="hidden" type="hidden" name="_method" value="delete">

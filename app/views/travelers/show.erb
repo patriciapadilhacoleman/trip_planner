@@ -6,9 +6,10 @@
 <h4>Address: <%=@traveler.street_address%></h4>
 <h4><%=@traveler.city%>, <%=@traveler.state%> <%=@traveler.zip%></h4>
 
-<h2>Trips:</h2>
-<ul>
+
   <%if @traveler.trips.count > 0 %>
+    <h2>Trips:</h2>
+    <ul>
       <%@traveler.trips.each do |trip|%>
       <form action='/trips/<%=trip.id%>/edit' method="post">
         <li>
@@ -16,11 +17,12 @@
         <button type="submit">Edit Trip</button></form>
         </li>
       <%end%>
+      </ul>
    <%end%>
-</ul>
+
 
 <form action='/trips/new' method="post">
- <button type="submit">Add Trip</button>
+ <button type="submit">Add a Trip</button>
 </form>
 
 <form action='/travelers/<%=@traveler.id%>/edit' method="post">
