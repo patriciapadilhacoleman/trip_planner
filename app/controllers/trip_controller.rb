@@ -14,12 +14,13 @@ class TripController < ApplicationController
 
   post '/trips' do
     binding.pry
-    @trip = Trip.new(params[:trip])
+    @trip = Trip.create(params[:trip])
     @trip.traveler_id = session["user_id"]
     @trip.save
     @traveler = Traveler.find_by_id(@trip.traveler_id)
     erb:"trips/show"
   end
+
   get '/trips/new' do
 
     binding.pry
@@ -33,7 +34,7 @@ class TripController < ApplicationController
 
   post '/trips/new' do
 
-    
+
     if !session[:user_id]
       redirect to "/login"
     else

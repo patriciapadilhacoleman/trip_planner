@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
    post '/sessions' do
 
      id = login(params[:username], params[:password])
+     binding.pry
      @traveler = Traveler.find(id)
      erb :'/travelers/show'
    end
