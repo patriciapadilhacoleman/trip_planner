@@ -1,10 +1,9 @@
 class TripController < ApplicationController
 
   get '/trips' do
-    binding.pry
+
     if logged_in?
       @traveler = Traveler.find_by_id(session[:user_id])
-      binding.pry
       erb:"trips/show"
     else
       erb:index
@@ -23,7 +22,6 @@ class TripController < ApplicationController
 
   get '/trips/new' do
 
-    binding.pry
     if !session[:user_id]
       redirect to "/login"
     else
@@ -34,7 +32,6 @@ class TripController < ApplicationController
 
   post '/trips/new' do
 
-
     if !session[:user_id]
       redirect to "/login"
     else
@@ -43,9 +40,19 @@ class TripController < ApplicationController
     end
   end
 
+  get '/trips/:id' do
+
+     if @trip = current_user.trips.find_by_id(params[:id])
+
+        @traveler = Traveler.find(session[:user_id])
+        erb:"/trips/show"
+
+      else
+        redirect '/trips'
+      end
+  end
   get '/trips/:id/edit' do
 
-     binding.pry
      if @trip = current_user.trips.find_by_id(params[:id])
 
         @traveler = Traveler.find(session[:user_id])
@@ -58,15 +65,13 @@ class TripController < ApplicationController
 
   post '/trips/:id/edit' do
 
-     binding.pry
-
      if @trip = current_user.trips.find_by(params[:id])
 
         # "Edit a post form #{current_user.id} is editing #{trip.id}"
         erb:"/trips/edit"
 
       else
-        binding.pry
+
         redirect '/trips'
       end
 
@@ -89,12 +94,14 @@ class TripController < ApplicationController
     # redirect "travelers/#{@traveler.id}"
   end
 
-  delete '/travelers/:id' do
+  delete '/trips/:id' do
 
-    traveler = Traveler.find_by_id(params[:id])
-    traveler.delete
-    logout
-    erb:index
+    if trip = Trip.find_by_id(params[:id])
+      trip.delete
+    end
+    @traveler = Traveler.find(session[:user_id])
+    erb:"trips/show"
+
   end
 
 end
