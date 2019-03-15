@@ -1,0 +1,18 @@
+<form action="/trips/<%=@trip.id%>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <label>Name:</label>
+  <br>
+  <input type="text" name="trip[name]" id="trip_name" value="<%=@trip.name%>">
+  <br>
+  <label>Beginning Date:</label>
+  <input type="text" name="trip[beg_date]" id="trip_beg_date" value="<%=@trip.beg_date%>">
+
+  <label>Ending Date:</label>
+  <input type="text" name="trip[end_date]" id="trip_end_date" value="<%=@trip.end_date%>">
+  <br>
+  <label>Budget:</label>
+  <input type="text" name="trip[budget]" id="trip_budget" value="<%=@trip.budget%>">
+  <br>
+
+  <input type="submit" value="Update Trip">
+</form>

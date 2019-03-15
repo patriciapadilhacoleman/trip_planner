@@ -11,8 +11,10 @@
   <%if @traveler.trips.count > 0 %>
       <%@traveler.trips.each do |trip|%>
       <form action='/trips/<%=trip.id%>/edit' method="post">
-        <li><%=trip.name%> </li>
+        <li>
+          <%=trip.name%>
         <button type="submit">Edit Trip</button></form>
+        </li>
       <%end%>
    <%end%>
 </ul>

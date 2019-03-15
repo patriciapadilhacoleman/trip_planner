@@ -33,7 +33,7 @@ class TripController < ApplicationController
 
   post '/trips/new' do
 
-    binding.pry
+    
     if !session[:user_id]
       redirect to "/login"
     else
@@ -55,6 +55,46 @@ class TripController < ApplicationController
         redirect '/trips'
       end
     end
+  end
+
+  post '/trips/:id/edit' do
+
+     binding.pry
+
+     if @trip = current_user.trips.find_by(params[:id])
+
+        # "Edit a post form #{current_user.id} is editing #{trip.id}"
+        erb:"/trips/edit"
+
+      else
+        redirect '/trips'
+      end
+
+  end
+
+  patch '/trips/:id' do
+    @traveler = Traveler.find(session[:user_id])
+    @trip = @traveler.trips.find(params[:id])
+    # if !params[:traveler].keys.include?("trip_ids")
+    # params[:traveler]["trip_ids"] = []
+    # end
+
+    @trip.update(params["trip"])
+    binding.pry
+    erb:"trips/show"
+    # if !params["trip"]["name"].empty?
+    #   @traveler.trips << Trip.create(name: params["trip"]["name"])
+    # end
+
+    # redirect "travelers/#{@traveler.id}"
+  end
+
+  delete '/travelers/:id' do
+
+    traveler = Traveler.find_by_id(params[:id])
+    traveler.delete
+    logout
+    erb:index
   end
 
 end
