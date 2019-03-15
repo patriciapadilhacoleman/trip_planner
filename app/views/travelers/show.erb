@@ -8,10 +8,18 @@
 
 <h2>Trips:</h2>
 <ul>
-  <%@traveler.trips.each do |trip|%>
-  <li><%=trip.name%></li>
-  <%end%>
+  <%if @traveler.trips.count > 0 %>
+      <%@traveler.trips.each do |trip|%>
+      <form action='/trips/<%=trip.id%>/edit' method="post">
+        <li><%=trip.name%> </li>
+        <button type="submit">Edit Trip</button></form>
+      <%end%>
+   <%end%>
 </ul>
+
+<form action='/trips/new' method="post">
+ <button type="submit">Add Trip</button>
+</form>
 
 <form action='/travelers/<%=@traveler.id%>/edit' method="post">
  <button type="submit">Update Info</button>

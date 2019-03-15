@@ -6,13 +6,15 @@ class SessionsController < ApplicationController
 
    post '/sessions' do
 
-     login(params[:username], params[:password])
-     redirect to '/trips'
+     id = login(params[:username], params[:password])
+     @traveler = Traveler.find(id)
+     binding.pry
+     erb :'/travelers/show'
    end
 
    get '/logout' do
      logout
-     redirect to '/trips'
+     erb:index
    end
 
 end

@@ -1,25 +1,43 @@
 class TripController < ApplicationController
 
   get '/trips' do
-    username = session[:username]
-    @traveler = Traveler.find_by(:username => username)
-    erb:"trips/show"
+    binding.pry
+    if logged_in?
+      @traveler = Traveler.find_by_id(session[:user_id])
+      binding.pry
+      erb:"trips/show"
+    else
+      erb:index
+    end
+
   end
 
   post '/trips' do
-
+    binding.pry
     @trip = Trip.new(params[:trip])
     @trip.traveler_id = session["user_id"]
     @trip.save
     @traveler = Traveler.find_by_id(@trip.traveler_id)
-    binding.pry
     erb:"trips/show"
   end
   get '/trips/new' do
 
-    if !logged_in?
+    binding.pry
+    if !session[:user_id]
       redirect to "/login"
     else
+      @traveler = Traveler.find(session[:user_id])
+      erb:'trips/new'
+    end
+  end
+
+  post '/trips/new' do
+
+    binding.pry
+    if !session[:user_id]
+      redirect to "/login"
+    else
+      @traveler = Traveler.find(session[:user_id])
       erb:'trips/new'
     end
   end

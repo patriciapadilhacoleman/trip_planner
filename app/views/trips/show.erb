@@ -1,7 +1,16 @@
-<h1><%=@traveler.first_name%></h1>
-<h4>Trips:</h4>
+<h1>Hi <%=@traveler.first_name%>!</h1>
+<h2>Trips:</h2>
 <ul>
   <%@traveler.trips.each do |trip|%>
-  <li><%=trip.name%></li>
+  <li><%=trip.name%>
+      <p><%=trip.beg_date%><%=trip.end_date%> $<%=trip.budget%></p>
+      <a href="/trips/<%=trip.id%>/edit"><button>Edit</button></a>
+  </li>
   <%end%>
 </ul>
+<label>Create a new trip:</label>
+<br>
+<label>name:</label>
+  <input  type="text" name="trip[name]" id="trip_name"></input>
+  <a href="/trips/new"><button>Create a Trip</button></a>
+<br>

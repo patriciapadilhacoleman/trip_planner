@@ -1,14 +1,12 @@
-<h1>Create a New Trip</h1>
-
-<form action="/trips" method="POST">
-  <label>Name:</label>
-
-  <br></br>
-
-  <input type="text" name="trip[name]" id="trip_name">
-
-  <br></br>
-
-
-  <input type="submit" value="Create a Trip">
+<h1>Create a New Trip <%=@traveler.name%></h1>
+<form action="/trips/new" method="post">
+  <label for="name">Name: </label>
+  <input type="text" id="trip_name" name= "trip[name]">
+  <label for="beg_date">Beginning Date: </label>
+  <input type="text" id="trip_beg_date" name="trip[beg_date]">
+  <label for="end_date">Ending Date: </label>
+  <input type="text" id="trip_end_date" name="trip[end_date]"><br>
+  <label for="budget">Budget: $</label>
+  <input type="number" step="0.01" id="trip_budget" name="trip[budbet]"><br>
+ <button id="submit" type="submit">Add Trip</button>
 </form>

@@ -28,11 +28,10 @@ class ApplicationController < Sinatra::Base
 
     def login(username, password)
       user = Traveler.find_by(:username => username)
+    
       if user && user.authenticate(password)
           session[:username] = user.username
           session[:user_id] = user.id
-      else
-        redirect to '/login'
       end
     end
 

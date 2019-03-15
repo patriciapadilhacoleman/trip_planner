@@ -10,7 +10,7 @@ class TravelersController < ApplicationController
 
     if @traveler
      login(params[:username], params[:password])
-     redirect to '/trips/new'
+     erb:"travelers/show"
     else
       erb:"travelers/new.html"
     end
@@ -75,7 +75,7 @@ class TravelersController < ApplicationController
 
     traveler = Traveler.find_by_id(params[:id])
     traveler.delete
-
+    logout
     erb:index
   end
 
