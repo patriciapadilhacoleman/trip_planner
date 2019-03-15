@@ -60,14 +60,9 @@ class TravelersController < ApplicationController
   patch '/travelers/:id' do
     @traveler = Traveler.find(params[:id])
 
-    if !params[:traveler].keys.include?("trip_ids")
-    params[:traveler]["trip_ids"] = []
-    end
 
+    binding.pry
     @traveler.update(params["traveler"])
-    if !params["trip"]["name"].empty?
-      @traveler.trips << Trip.create(name: params["trip"]["name"])
-    end
     redirect "travelers/#{@traveler.id}"
   end
 

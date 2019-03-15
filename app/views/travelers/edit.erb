@@ -15,25 +15,17 @@
   <label>Address:</label>
   <input type="text" name="traveler[street_address]" id="traveler_street_address" value="<%=@traveler.street_address%>">
   <br>
+  <label>City:</label>
   <input type="text" name="traveler[city]" id="traveler_city" value="<%=@traveler.city%>">
+  <label>State:</label>
   <input type="text" name="traveler[state]" id="traveler_state" value="<%=@traveler.state%>">
+  <label>Zip:</label>
   <input type="text" name="traveler[zip]" id="traveler_zip" value="<%=@traveler.zip%>">
   <br>
 
-  <label>Choose an existing trip:</label>
-
+  
   <br>
 
-  <%@traveler.trips.each do |trip|%>
-    <input type="checkbox" name="traveler[trip_ids][]" id="<%= trip.id%>" value="<%=trip.id%>" <%='checked' if @traveler.trips.include?(trip) %>><%=trip.name%></input>
-  <%end%>
-
-  <br>
-
-  <label>and/or, create a new trip:</label>
-  <br>
-  <label>name:</label>
-    <input  type="text" name="trip[name]" id="trip_name"></input>
 
   <br>
   <input type="submit" value="Update Traveler">

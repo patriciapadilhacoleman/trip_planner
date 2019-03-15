@@ -25,6 +25,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def login(username, password)
+      binding.pry
       user = Traveler.find_by(:username => username)
 
       if user && user.authenticate(password)

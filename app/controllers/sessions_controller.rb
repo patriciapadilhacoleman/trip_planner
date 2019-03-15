@@ -7,10 +7,14 @@ class SessionsController < ApplicationController
    post '/sessions' do
 
      id = login(params[:username], params[:password])
-     binding.pry
-     @traveler = Traveler.find(id)
-     erb :'/travelers/show'
-   end
+    
+       if id != nil
+         @traveler = Traveler.find(id)
+         erb :'/travelers/show'
+       else
+         erb:index
+       end
+    end
 
    get '/logout' do
      logout

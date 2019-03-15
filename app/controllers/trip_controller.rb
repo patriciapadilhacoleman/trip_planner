@@ -46,16 +46,14 @@ class TripController < ApplicationController
   get '/trips/:id/edit' do
 
      binding.pry
-    if !logged_in?
-      redirect to "/login"
-    else
-      if post = current_user.trips.find_by(params[:id])
+     if @trip = current_user.trips.find_by(params[:id])
 
-        "Edit a post form #{current_user.id} is editing #{post.id}"
+        # "Edit a post form #{current_user.id} is editing #{trip.id}"
+        erb:"/trips/edit"
+
       else
         redirect '/trips'
       end
-    end
   end
 
   post '/trips/:id/edit' do
