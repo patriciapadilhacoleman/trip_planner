@@ -4,33 +4,41 @@
     <ul>
       <%@traveler.trips.each do |trip|%>
       <li><h3><%=trip.name%></h3>
-          <p>Start Date: <%=trip.beg_date%> End Date:<%=trip.end_date%></p>
-          <p>Budget: $<%=trip.budget%></p>
+        <p>Start Date: <%=trip.beg_date%> End Date:<%=trip.end_date%></p>
+        <p>Budget: $<%=trip.budget%></p>
 
           <table>
-            <caption>Trip's Daily Planner</caption>
-                   <tr>
-                      <th>Date</th>
-                      <th>Location</th>
-                      <th>Activities</th>
-                      <th>Transportation</th>
-                   </tr>
-                   <tr>
-                      <td>Java</td>
-                      <td>1995</td>
-                      <td>Java</td>
-                      <td>1995</td>
-                   </tr>
-                   <tr>
-                      <td>Pascal</td>
-                      <td>1970</td>
-                      <td>Java</td>
-                      <td>1995</td>
-                   </tr>
-            </table>
+          <caption><h3>Trip's Daily Planner</h3></caption>
+           <tr>
+              <th>Date</th>
+              <th>Location</th>
+              <th>Activities</th>
+              <th>Transportation</th>
+              <th></th>
+           </tr>
+           <%trip.days.each do |day|%>
+           <tr>
+             <td><input type="text" name="day[date]" id="day_date" value=<%=day.date%>></td>
+             <td><input type="text" name="day[location]" id="day_location" value=<%=day.location%>></td>
+             <td><input type="text" name="day[activities]" id="day_activities" value = <%=day.activities%>></td>
+             <td><input type="text" name="day[transportation]" id="day_transportation" value =<%=day.transportation%>></td>
 
-          <a href="/trips/<%=trip.id%>/edit"><button>   Edit   </button></a>
-          <form action="/trips/<%=@trip.id%>" method="POST">
+           </tr>
+           <%end%>
+           <tr>
+              <td><input type="date" name="day[date]" id="day_date"></td>
+              <td><input type="text" name="day[location]" id="day_location"></td>
+              <td><input type="text" name="day[activities]" id="day_activities"></td>
+              <td><input type="text" name="day[transportation]" id="day_transportation"></td>
+              <td><a href="/days/<%=trip.id%>/new"><button> Update </button></a></td>
+           </tr>
+           </table>
+
+
+           <br>
+
+          <a href="/trips/<%=trip.id%>/edit"><button> Edit Trip </button></a>
+          <form action="/trips/<%=trip.id%>" method="POST">
             <input id="hidden" type="hidden" name="_method" value="delete">
             <input type="submit" value="Delete">
           </form>

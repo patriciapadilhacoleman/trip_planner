@@ -6,5 +6,6 @@ end
 use Rack::MethodOverride
 use SessionsController
 use TripController
+use DayController
 use TravelersController
 run ApplicationController

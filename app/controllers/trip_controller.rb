@@ -69,7 +69,7 @@ class TripController < ApplicationController
 
      if @trip = current_user.trips.find_by(params[:id])
 
-        # "Edit a post form #{current_user.id} is editing #{trip.id}"
+        @traveler = Traveler.find(session[:user_id])
         erb:"/trips/edit"
 
       else
@@ -87,7 +87,7 @@ class TripController < ApplicationController
     # end
 
     @trip.update(params["trip"])
-
+    
     erb:"trips/show"
     # if !params["trip"]["name"].empty?
     #   @traveler.trips << Trip.create(name: params["trip"]["name"])
