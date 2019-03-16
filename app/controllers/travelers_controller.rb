@@ -17,8 +17,13 @@ class TravelersController < ApplicationController
   end
 
   get '/travelers' do
-    erb:index #signup or login
 
+    if @traveler = current_user
+      binding.pry
+      erb:"travelers/show"
+    else
+      erb:index #signup or login
+    end
   end
 
   post '/travelers/new' do #signup
@@ -27,6 +32,7 @@ class TravelersController < ApplicationController
 
 
   get '/travelers/:id/edit' do
+
 
     if logged_in?
       @traveler = Traveler.find(params[:id])
