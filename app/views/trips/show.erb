@@ -25,13 +25,16 @@
 
            </tr>
            <%end%>
+           <form action="/days/new" method="POST">
            <tr>
               <td><input type="date" name="day[date]" id="day_date"></td>
               <td><input type="text" name="day[location]" id="day_location"></td>
               <td><input type="text" name="day[activities]" id="day_activities"></td>
               <td><input type="text" name="day[transportation]" id="day_transportation"></td>
-              <td><a href="/days/<%=trip.id%>/new"><button> Update </button></a></td>
+              <input id="trip_id" type="hidden" name="trip[id]" value=<%=trip.id%>>
+              <td><input type="submit" value="Add"></td>
            </tr>
+           </form>
            </table>
 
 

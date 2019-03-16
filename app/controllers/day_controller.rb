@@ -1,9 +1,13 @@
 class DayController < ApplicationController
 
-  get "/days/:trip_id/new" do
+  post "/days/new" do
 
+    @day = Day.create(params[:day])
+    @day.trip_id = params[:trip][:id]
+    @day.save
     binding.pry
-    # "Create new day w activities"
-
+    @traveler = current_user
+    @trip = current_user.trips.find_by_id(params[:id])
+    erb:"/trips/show"
   end
 end
