@@ -42,6 +42,11 @@
       <a href="/trips">Trips</a>
       <a href="#contact">Contact</a>
       <a href="#about">About</a>
+      <% if session[:user_id] == "" ||session[:user_id] == nil%>
+        <a href="#login">Log In</a>
+      <%else%>
+        <a href="#logout">Log Out</a>
+      <%end%>
     </div>
     <%= yield %>
   </body>
