@@ -2,10 +2,8 @@ class TripController < ApplicationController
 
   get '/trips' do
 
-    if logged_in?
-      @traveler = Traveler.find_by_id(session[:user_id])
-      binding.pry
-      @days = current_user.trips.days
+    if @traveler = current_user
+      @trips = current_user.trips
       erb:"trips/show"
     else
       erb:index
@@ -87,7 +85,7 @@ class TripController < ApplicationController
     # end
 
     @trip.update(params["trip"])
-    
+
     erb:"trips/show"
     # if !params["trip"]["name"].empty?
     #   @traveler.trips << Trip.create(name: params["trip"]["name"])

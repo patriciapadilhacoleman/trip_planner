@@ -19,7 +19,6 @@ class TravelersController < ApplicationController
   get '/travelers' do
 
     if @traveler = current_user
-      binding.pry
       erb:"travelers/show"
     else
       erb:index #signup or login
