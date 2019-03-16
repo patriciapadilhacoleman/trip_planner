@@ -4,8 +4,8 @@
     <ul>
       <%@traveler.trips.each do |trip|%>
       <li><h3><%=trip.name%></h3>
-        <p>Start Date: <%=trip.beg_date%> End Date:<%=trip.end_date%></p>
-        <p>Budget: $<%=trip.budget%></p>
+        <h4>Start Date:</h4><%=trip.beg_date%> End Date:<%=trip.end_date%>
+        <h4>Budget: </h4>$<%=trip.budget%>
 
           <table>
           <caption><h3>Trip's Daily Planner</h3></caption>
@@ -14,16 +14,26 @@
               <th>Location</th>
               <th>Activities</th>
               <th>Transportation</th>
-              <th></th>
+              <th colspan="2"></th>
            </tr>
+
            <%trip.days.each do |day|%>
+           <form action="/days/<%=day.id%>" method="POST">
+             <input id="hidden" type="hidden" name="_method" value="patch">
            <tr>
              <td><input type="text" name="day[date]" id="day_date" value=<%=day.date%>></td>
              <td><input type="text" name="day[location]" id="day_location" value=<%=day.location%>></td>
-             <td><input type="text" name="day[activities]" id="day_activities" value = <%=day.activities%>></td>
+             <td><input type="textarea" name="day[activities]" id="day_activities" value = <%=day.activities%>></td>
              <td><input type="text" name="day[transportation]" id="day_transportation" value =<%=day.transportation%>></td>
-
+             <input id="trip_id" type="hidden" name="trip[id]" value=<%=trip.id%>>
+             <td><input type="submit" value="Update"></td>
+             </form>
+             <form action="/days/<%=day.id%>" method="POST">
+               <input id="hidden" type="hidden" name="_method" value="delete">
+               <td><input type="submit" value="Delete"></td>
+             </form>
            </tr>
+
            <%end%>
            <form action="/days/new" method="POST">
            <tr>
@@ -32,7 +42,7 @@
               <td><input type="text" name="day[activities]" id="day_activities"></td>
               <td><input type="text" name="day[transportation]" id="day_transportation"></td>
               <input id="trip_id" type="hidden" name="trip[id]" value=<%=trip.id%>>
-              <td><input type="submit" value="Add"></td>
+              <td colspan="2"><input type="submit" value="Add"></td>
            </tr>
            </form>
            </table>
