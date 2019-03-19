@@ -8,17 +8,36 @@
 
 
   <%if @traveler.trips.count > 0 %>
-    <h2>Trips:</h2>
-    <ul>
-      <%@traveler.trips.each do |trip|%>
-      <form action='/trips/<%=trip.id%>/edit' method="post">
-        <li>
-          <%=trip.name%>
-        <button type="submit">Edit Trip</button></form>
-        </li>
-      <%end%>
-      </ul>
-   <%end%>
+
+      <table>
+       <tr>
+          <th>Name: </th>
+          <th colspan="4"></th>
+       </tr>
+       <%@traveler.trips.each do |trip|%>
+       <form action="/trips/<%=trip.id%>/edit" method="GET">
+        <tr>
+          <td><%=trip.name%></td>
+           <input id="trip_id" type="hidden" name="trip[id]" value=<%=trip.id%>>
+           <td colspan="2"><input type="submit" value="Update"></td>
+           </form>
+           <form action="/trips/<%=trip.id%>" method="POST">
+             <input id="hidden" type="hidden" name="_method" value="delete">
+             <td colspan="2"><input type="submit" value="Delete"></td>
+           </form>
+        </tr>
+        <%end%>
+     <%end%>
+
+        <form action="/trips/new" method="POST">
+        <tr>
+           <td><input type="text" name="trip[name]" id="trip_name"></td>
+           <td colspan="4"><input type="submit" value="Add a Trip"></td>
+        </tr>
+        </form>
+      </<table>
+
+
 
 
 <form action='/trips/new' method="post">
@@ -33,3 +52,5 @@
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Account">
 </form>
+<p></p>
+<h3>Your Trips:</h3>

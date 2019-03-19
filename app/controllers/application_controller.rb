@@ -24,8 +24,12 @@ class ApplicationController < Sinatra::Base
       @current_user ||= Traveler.find_by_id(session[:user_id])
     end
 
+    def current_trip(trip_id)
+      @current_user ||= Trip.find_by_id(trip_id)
+    end
+
     def login(username, password)
-      
+
       user = Traveler.find_by(:username => username)
 
       if user && user.authenticate(password)

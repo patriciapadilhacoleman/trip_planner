@@ -42,6 +42,7 @@ class TripController < ApplicationController
 
   get '/trips/:id' do
 
+  
      if @trip = current_user.trips.find_by_id(params[:id])
 
         @traveler = Traveler.find(session[:user_id])
