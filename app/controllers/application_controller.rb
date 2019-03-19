@@ -3,6 +3,7 @@ require_relative '../../config/environment'
 class ApplicationController < Sinatra::Base
 
   configure do
+    set :public_folder, 'public'
     set :views, Proc.new { File.join(root, "../views/") }
     enable :sessions
     set :session_secret, "secret"
@@ -14,9 +15,10 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def logged_in?
-      if params["id"].to_i == session[:user_id]
-        return true
-      end
+      #if params["id"].to_i == session[:user_id]
+      #  return true
+      #end
+      !!current_user
 
     end
 

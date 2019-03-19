@@ -8,10 +8,11 @@ class TravelersController < ApplicationController
 
     @traveler = add_traveler(params)
 
-    if @traveler
+    if @traveler.save
      login(params[:username], params[:password])
      erb:"travelers/show"
     else
+      #flash.now[:errors] = @traveler.errors.show_full_messages
       erb:"travelers/new.html"
     end
   end
@@ -89,9 +90,7 @@ class TravelersController < ApplicationController
     @traveler.city = params[:city]
     @traveler.state = params[:state]
     @traveler.zip = params[:zip]
-    @traveler.save
     @traveler
-
   end
 
 end
