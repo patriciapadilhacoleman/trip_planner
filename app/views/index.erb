@@ -1,22 +1,18 @@
 <h1>Welcome to Your Trip Planner</h1>
-<h2>If You Are Registered:</h2>
+
+<div class="btn-group">
+
 <form action='/sessions' method="post">
-  <label for="username">Username: </label>
-  <input type="text" id="username" name= "username"><br>
-  <label for="password">Password: </label>
-  <input type="password" id="password" name= "password"><br>
+  <h4>Username:
+  <input type="text" id="username" name= "username"></h4>
+  <h4>Password:
+  <input type="password" id="password" name= "password"></h4>
   <button id="submit" type="submit">Log In</button>
 </form>
-
-<h2>Otherwise:
-<!-- <h3>Sign Up:</h3> -->
 
 <%= "Must include username and password" if @traveler && @traveler.errors.any? %>
 
 <form action='/travelers/new' method="post">
-  <!-- <label for="username">Username: </label>
-  <input type="text" id="username" name= "username"><br>
-  <label for="password">Password: </label>
-  <input type="password" id="password" name="password"><br> -->
   <button id="submit" type="submit">Sign Up</button>
-</form></h2>
+</form>
+</div>

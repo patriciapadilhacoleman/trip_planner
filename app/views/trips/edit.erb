@@ -1,20 +1,22 @@
 <h1>Hi <%=@traveler.first_name%>!</h1>
 <h2>Edit Your Trip:</h2>
+<div class="btn-group">
+
 <form action="/trips/<%=@trip.id%>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
-  <label>Name:</label>
-  <br>
+  <h4>Name:
+
   <input type="text" name="trip[name]" id="trip_name" value="<%=@trip.name%>">
-  <br>
-  <label>Beginning Date:</label>
+  Budget:
+    <input type="text" name="trip[budget]" id="trip_budget" value="<%=@trip.budget%>"></h4>
+
+  <h4>Beginning Date:
   <input type="text" name="trip[beg_date]" id="trip_beg_date" value="<%=@trip.beg_date%>">
 
-  <label>Ending Date:</label>
-  <input type="text" name="trip[end_date]" id="trip_end_date" value="<%=@trip.end_date%>">
-  <br>
-  <label>Budget:</label>
-  <input type="text" name="trip[budget]" id="trip_budget" value="<%=@trip.budget%>">
-  <br>
+  Ending Date:
+  <input type="text" name="trip[end_date]" id="trip_end_date" value="<%=@trip.end_date%>"></h4>
 
-  <input type="submit" value="Update Trip">
+  <button type="submit">Update Trip</button>
 </form>
+<a href="/travelers"><button>Go Back to Trips</button></a>
+</div>
