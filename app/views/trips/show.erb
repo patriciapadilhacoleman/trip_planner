@@ -1,5 +1,10 @@
-<h1>Hi <%=@traveler.first_name%>!</h1>
+<h1>Hi, <%=@traveler.first_name%></h1>
+  <div class="btn-group">
+    <a href="/trips/new"><button>Create a New Trip</button></a>
+  </div>
+
   <%if @traveler.trips.count > 0 %>
+  <br><br>
     <h2>Trips:</h2>
     <ul>
       <%@traveler.trips.each do |trip|%>
@@ -7,9 +12,18 @@
         <h4>Start Date:<%=trip.beg_date%></h4>
         <h4>End Date:<%=trip.end_date%></h4>
         <h4>Budget: $<%=trip.budget%></h4>
-
+        <div class="btn-group">
+          <a href="/trips/<%=trip.id%>/edit"><button> Edit Trip </button></a>
+          <form action="/trips/<%=trip.id%>" method="POST">
+            <input id="hidden" type="hidden" name="_method" value="delete">
+            <!-- <input type="submit" value="Delete"> -->
+            <button type="submit" value="Delete">Delete</button>
+          </form>
+        </div>
+        <br><br>
           <table>
-          <caption><h3>Trip's Daily Planner</h3></caption>
+            <br>
+          <h3>Trip's Daily Planner</h3>
            <tr>
               <th>Date</th>
               <th>Location</th>
@@ -38,7 +52,7 @@
            <%end%>
            <form action="/days/new" method="POST">
            <tr>
-              <td><input type="date" name="day[date]" id="day_date"></td>
+              <td><input type="text" name="day[date]" id="day_date" value=<%=trip.beg_date%>></td>
               <td><input type="text" name="day[location]" id="day_location"></td>
               <td><input type="text" name="day[activities]" id="day_activities"></td>
               <td><input type="text" name="day[transportation]" id="day_transportation"></td>
@@ -50,17 +64,10 @@
 
 
            <br>
-
-          <a href="/trips/<%=trip.id%>/edit"><button> Edit Trip </button></a>
-          <form action="/trips/<%=trip.id%>" method="POST">
-            <input id="hidden" type="hidden" name="_method" value="delete">
-            <input type="submit" value="Delete">
-          </form>
-          <br><br>
       </li>
       <%end%>
     </ul>
   <%end%>
 
-  <a href="/trips/new"><button>Create a New Trip</button></a>
+
 <br>

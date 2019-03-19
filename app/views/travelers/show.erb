@@ -1,4 +1,4 @@
-<h1><%=@traveler.first_name%>'s Info:</h1>
+<h1><%=@traveler.first_name%>'s Traveler Profile:</h1>
 
 <h4><%=@traveler.first_name%> <%=@traveler.last_name%></h4>
 <h4>Dob:<%=@traveler.dob%></h4>
@@ -6,10 +6,23 @@
 <h4>Address: <%=@traveler.street_address%></h4>
 <h4><%=@traveler.city%>, <%=@traveler.state%> <%=@traveler.zip%></h4>
 
+<div class="btn-group">
+<form action='/travelers/<%=@traveler.id%>/edit' method="post">
+ <button type="submit">Update Info</button>
+</form>
+
+<form action="/travelers/<%=@traveler.id%>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <button type="submit">Delete Account</button>
+</form>
+</div>
+<br><br>
+<br>
 
   <%if @traveler.trips.count > 0 %>
 
       <table>
+        <caption><h3>Your Trips:</h3></caption>
        <tr>
           <th>Name: </th>
           <th colspan="4"></th>
@@ -23,6 +36,7 @@
            </form>
            <form action="/trips/<%=trip.id%>" method="POST">
              <input id="hidden" type="hidden" name="_method" value="delete">
+             <input id="home_page" type="hidden" name="home_page" value="travelers">
              <td colspan="2"><input type="submit" value="Delete"></td>
            </form>
         </tr>
@@ -35,22 +49,4 @@
            <td colspan="4"><input type="submit" value="Add a Trip"></td>
         </tr>
         </form>
-      </<table>
-
-
-
-
-<form action='/trips/new' method="post">
- <button type="submit">Add a Trip</button>
-</form>
-
-<form action='/travelers/<%=@traveler.id%>/edit' method="post">
- <button type="submit">Update Info</button>
-</form>
-
-<form action="/travelers/<%=@traveler.id%>" method="POST">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Account">
-</form>
-<p></p>
-<h3>Your Trips:</h3>
+      </table>

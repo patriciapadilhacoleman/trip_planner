@@ -31,18 +31,21 @@ class TripController < ApplicationController
   end
 
   post '/trips/new' do
-
     if !session[:user_id]
       redirect to "/login"
     else
       @traveler = Traveler.find(session[:user_id])
+      if !@trip_name = params[:trip][:name]
+        @trip_name = ""
+      end
+    
       erb:'trips/new'
     end
   end
 
   get '/trips/:id' do
 
-  
+
      if @trip = current_user.trips.find_by_id(params[:id])
 
         @traveler = Traveler.find(session[:user_id])
@@ -101,7 +104,11 @@ class TripController < ApplicationController
       trip.delete
     end
     @traveler = Traveler.find(session[:user_id])
-    erb:"trips/show"
+    if params[:home_page] == "travelers"
+      erb:"travelers/show"
+    else
+      erb:"trips/show"
+    end
 
   end
 

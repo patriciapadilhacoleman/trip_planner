@@ -1,32 +1,30 @@
 <h1>Update Traveler</h1>
 
+<div class="btn-group">
 <form action="/travelers/<%=@traveler.id%>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
-  <label>Name:</label>
-  <br>
+  <h4>Name:
+
   <input type="text" name="traveler[first_name]" id="traveler_first_name" value="<%=@traveler.first_name%>">
-  <input type="text" name="traveler[last_name]" id="traveler_last_name" value="<%=@traveler.last_name%>">
-  <br>
-  <label>DOB:</label>
-  <input type="text" name="traveler[dob]" id="traveler_dob" value="<%=@traveler.dob%>">
-  <label>Home Airport:</label>
+  <input type="text" name="traveler[last_name]" id="traveler_last_name" value="<%=@traveler.last_name%>"></h4>
+
+  <h4>DOB:
+  <input type="text" name="traveler[dob]" id="traveler_dob" value="<%=@traveler.dob%>"></h4>
+  <h4>Home Airport:
   <input type="text" name="traveler[home_airport]" id="traveler_home_airport" value="<%=@traveler.home_airport%>">
-  <br>
-  <label>Address:</label>
-  <input type="text" name="traveler[street_address]" id="traveler_street_address" value="<%=@traveler.street_address%>">
-  <br>
-  <label>City:</label>
+
+  <h4>Address:
+  <input type="textarea" name="traveler[street_address]" id="traveler_street_address" value="<%=@traveler.street_address%>"></h4>
+
+  <h4>City:
   <input type="text" name="traveler[city]" id="traveler_city" value="<%=@traveler.city%>">
-  <label>State:</label>
+  State:
   <input type="text" name="traveler[state]" id="traveler_state" value="<%=@traveler.state%>">
-  <label>Zip:</label>
-  <input type="text" name="traveler[zip]" id="traveler_zip" value="<%=@traveler.zip%>">
-  <br>
-
-  
-  <br>
+  Zip:
+  <input type="text" name="traveler[zip]" id="traveler_zip" value="<%=@traveler.zip%>"></h4>
 
 
-  <br>
-  <input type="submit" value="Update Traveler">
+  <button type="submit">Update Traveler</button>
 </form>
+<a href="/travelers"><button>Go Back to Traveler Profile</button></a>
+</div>

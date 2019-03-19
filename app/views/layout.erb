@@ -3,10 +3,27 @@
   <head>
     <title>The Trip Planner</title>
     <style>
+        body {
+          background:url("./app/views/white-waves.png") no-repeat fixed center;
+          text-align:left;
+        }
+        .btn-group button {
+            background-color: #4CAF50; /* Green background */
+            border: 1px solid green; /* Green border */
+            color: white; /* White text */
+            padding: 10px 24px; /* Some padding */
+            cursor: pointer; /* Pointer/hand icon */
+            float: left; /* Float the buttons side by side */
+          }
+          .trips {
+            float: left;
+            position: relative;
+          }
          table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
-            text-align: center;
+            text-align: left;
+            margin-left:0;
          }
          .topnav {
             background-color: #333;
